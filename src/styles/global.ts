@@ -10,7 +10,8 @@ export default createGlobalStyle`
     background: ${props => props.theme.colors.background};
     color: ${props => props.theme.colors.text};
     font-family: 'Open Sans', sans-serif;
+    /* min-width:100vw; */
 
   }
-  body { font-size:62.5%; }
+  body { font-size: calc(1em + 1vw); }
 `;
