@@ -8,7 +8,7 @@ const reducer = (state = INITIAL_STATE, action) => {
     case type.ADD_ITEM:
       return produce(state, draft => {
         console.log('chamou');
-        draft = action.payload;
+        return action.payload;
       });
     default:
       return state;

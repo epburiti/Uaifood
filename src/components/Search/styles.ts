@@ -4,11 +4,11 @@ export const Container = styled.div<propsI>`
   display: flex;
   justify-content: center;
   align-items: baseline;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   margin: 2rem;
-
+  width: 100vw;
   .width-input {
-    width: ${props => (props.navBar ? '70rem' : '40rem')};
+    width: ${props => (props.navBar ? '80%' : '40%')};
     input {
       width: 100%;
       color: ${props => props.theme.colors.txtInput};
@@ -74,7 +74,7 @@ export const ContainerItems = styled.div<propsI>`
 
   > button {
     cursor: pointer;
-    width: 100%;
+    /* width: 100%; */
     padding: 8px 4px;
     background: transparent;
     display: flex;

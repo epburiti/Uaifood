@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import BackImage from '../../assets/uaifood/bg.jpg';
 export const Container = styled.div`
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   background-image: url(${BackImage});
   background-position: center;
   background-repeat: no-repeat;

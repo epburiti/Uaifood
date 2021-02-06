@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Container, ContainerItems } from './styles';
 import api from '../../services/api';
 import { FaMapMarkerAlt } from 'react-icons/fa';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as CityAction from '../../store/ducks/City/action';
 
 export interface propsI {
@@ -13,8 +13,19 @@ export interface propsI {
 const Search = (props: propsI) => {
   const dispatch = useDispatch();
   const [searchValue, setSearchValue] = useState('');
+  const [dataRef, setDataRef] = useState();
   const [toggleOptions, setToggleOptions] = useState(false);
   const [cities, setCities] = useState([]);
+  const searchSelected = useSelector(state => state.City);
+  useEffect(() => {
+    if (searchSelected) {
+      setSearchValue(searchSelected.city_name);
+      getCitiess();
+    }
+  }, [searchSelected]);
+  useEffect(() => {
+    console.log(cities);
+  }, [cities]);
   function getCitiess() {
     api
       .get(`/locations?query=${searchValue}`)
@@ -54,8 +65,8 @@ const Search = (props: propsI) => {
                   <button
                     key={index}
                     onClick={() => {
-                      setSearchValue(item.title);
-                      dispatch(CityAction.saveCity(item));
+                      setSearchValue(item.city_name + ' ' + item.country_name);
+                      setDataRef(item);
                       setToggleOptions(false);
                     }}
                   >
@@ -68,7 +79,14 @@ const Search = (props: propsI) => {
         </ContainerItems>
       </div>
       <Link href="/Restaurants">
-        <button className="customButton">Buscar</button>
+        <button
+          className="customButton"
+          onClick={() => {
+            dispatch(CityAction.saveCity(dataRef));
+          }}
+        >
+          Buscar
+        </button>
       </Link>
     </Container>
   );

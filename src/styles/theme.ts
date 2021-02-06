@@ -4,7 +4,8 @@ const theme = {
     text: '#A5A5A5A5',
     textHome: '#FFF',
     green: '#39b54a',
-    txtInput: '#484848'
+    txtInput: '#484848',
+    cardInput: '#333'
   }
 };
 
